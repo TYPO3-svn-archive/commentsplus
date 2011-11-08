@@ -54,13 +54,18 @@ class Tx_Commentsplus_Controller_CommentController extends Tx_Commentsplus_MVC_C
      * @return void
      */
     public function createAction(Tx_Commentsplus_Domain_Model_Comment $newComment) {
-        $newComment
-                ->setTime(new DateTime())
-                ->setApproved($this->approveCommentImmediatelly($newComment))
-                ->_setProperty('_languageUid', intval($GLOBALS['TSFE']->sys_language_uid));
+		$this->reputationSystem->setSettings($this->settings);
+		$this->notificationService->setSettings($this->settings);
+        $newComment->setTime(new DateTime());
+		$newComment->setApproved($this->reputationSystem->determineApprovedStatus($newComment));
+		$newComment->_setProperty('_languageUid', intval($GLOBALS['TSFE']->sys_language_uid));
 		if($this->settings['saveIP']) {
 			$newComment->setIp($_SERVER['REMOTE_ADDR']);
 		}
+		$this->notificationService->notify($newComment);
+		if($newComment->getApproved() == Tx_Commentsplus_Domain_Model_Comment::APPROVAL_STATUS_NOTAPPROVED) {
+            $this->addFlashMessage('moderation', t3lib_FlashMessage::INFO);
+        }
         $this->commentRepository->add($newComment);
         $this->redirect('list');
     }

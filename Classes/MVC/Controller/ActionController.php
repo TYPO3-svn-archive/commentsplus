@@ -14,9 +14,14 @@ class Tx_Commentsplus_MVC_Controller_ActionController extends Tx_Extbase_MVC_Con
     protected $errorContainer;
 
 	/**
-	 * @var Tx_Extbase_Service_TypoScriptService
+	 * @var Tx_Commentsplus_Utility_NotificationService
 	 */
-	protected $typoScriptService;
+	protected $notificationService;
+
+	/**
+	 * @var Tx_Commentsplus_Utility_ReputationSystem
+	 */
+	protected $reputationSystem;
 
 	/**
 	 * injectCommentRepository
@@ -37,68 +42,19 @@ class Tx_Commentsplus_MVC_Controller_ActionController extends Tx_Extbase_MVC_Con
     }
 
 	/**
-	 * @param Tx_Extbase_Service_TypoScriptService $typoScriptService
+	 * @param Tx_Commentsplus_Utility_NotificationService $notificationService
 	 * @return void
 	 */
-	public function injectTypoScriptService(Tx_Extbase_Service_TypoScriptService $typoScriptService) {
-		$this->typoScriptService = $typoScriptService;
+	public function injectNotificationService(Tx_Commentsplus_Utility_NotificationService $notificationService) {
+		$this->notificationService = $notificationService;
 	}
 
-    /**
-     * @param Tx_Commentsplus_Domain_Model_Comment $newComment
-     * @return bool
-     */
-    protected function approveCommentImmediatelly(Tx_Commentsplus_Domain_Model_Comment $newComment) {
-        if($this->settings['spam']['moderateComments']) {
-            if(intval($this->settings['spam']['autoApproveAfterGenuineComments']) > 0) {
-                $approvedComments = $this->commentRepository->countApprovedByEmail($newComment->getEmail());
-                if($approvedComments >= intval($this->settings['spam']['autoApproveAfterGenuineComments'])) {
-                    $approve = TRUE;
-                } else {
-                    $approve = FALSE;
-                }
-            } else {
-                $approve = FALSE;
-            }
-        } else {
-            $approve = TRUE;
-        }
-        if($approve == FALSE) {
-			$this->notifyCommentToApprove($newComment);
-            $this->addFlashMessage('moderation', t3lib_FlashMessage::INFO);
-        }
-        return $approve;
-    }
-
 	/**
-	 * @param Tx_Commentsplus_Domain_Model_Comment $newComment
+	 * @param Tx_Commentsplus_Utility_ReputationSystem $reputationSystem
 	 * @return void
 	 */
-	protected function notifyCommentToApprove(Tx_Commentsplus_Domain_Model_Comment $newComment) {
-		$configuration = $this->typoScriptService->convertPlainArrayToTypoScriptArray($this->settings['notification']['newCommentToApprove']);
-
-		/**
-		 * @var tslib_cObj $localCObj
-		 */
-		$localCObj = $this->objectManager->get('tslib_cObj');
-		$localCObj->start(array(
-							  'timestamp' => $newComment->getTime()->getTimestamp(),
-							  'name' => $newComment->getName(),
-							  'email' => $newComment->getEmail(),
-							  'website' => $newComment->getWebsite(),
-							  'message' => $newComment->getMessage(),
-							  'ip' => $newComment->getIp()
-						  ));
-		$enable = $localCObj->stdWrap($configuration['enable'], $configuration['enable.']);
-		if($enable) {
-			$to = $localCObj->stdWrap($configuration['email'], $configuration['email.']);
-			$subject = $localCObj->stdWrap($configuration['subject'], $configuration['subject.']);
-			$message = $localCObj->stdWrap($configuration['message'], $configuration['message.']);
-			$fromEmail = $localCObj->stdWrap($configuration['fromEmail'], $configuration['fromEmail.']);
-			$fromName = $localCObj->stdWrap($configuration['fromName'], $configuration['fromName.']);
-			$header = 'From: ' . $fromName . ' <' . $fromEmail . '>';
-			t3lib_utility_Mail::mail($to, $subject, $message, $header);
-		}
+	public function injectReputationSystem(Tx_Commentsplus_Utility_ReputationSystem $reputationSystem) {
+		$this->reputationSystem = $reputationSystem;
 	}
 
 	/**

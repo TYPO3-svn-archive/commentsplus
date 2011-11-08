@@ -39,14 +39,7 @@ class Tx_Commentsplus_Domain_Validator_CommentValidator extends Tx_Extbase_Valid
      */
     public function isValid($comment) {
 
-        $postVars = t3lib_div::_POST('tx_commentsplus_comments');
-        if(!empty($postVars['commentsplus_honeypot'])) {
-            $this->addError('Spam detected by honeypot field', 1316037371);
-            return FALSE;
-        } else {
-            return TRUE;
-        }
-
+        return TRUE;
 
     }
 

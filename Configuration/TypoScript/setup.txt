@@ -1,5 +1,5 @@
 plugin.tx_commentsplus {
-	features.skipDefaultArguments = 0
+	features.skipDefaultArguments = 1
 	view {
 		templateRootPath = {$plugin.tx_commentsplus.view.templateRootPath}
 		partialRootPath = {$plugin.tx_commentsplus.view.partialRootPath}
