@@ -1,0 +1,44 @@
+.tx-commentsplus .comments {
+    padding: 0 20px;
+}
+
+.tx-commentsplus .comments li {
+    list-style-type: none;
+    border-bottom: 1px dotted #ADADAD;
+	margin-bottom: 5px;
+	padding-bottom: 10px;
+}
+
+#content .tx-commentsplus .comments li p {
+    margin-bottom: 0;
+}
+
+.tx-commentsplus .comments li .author {
+    font-weight: bold;
+}
+
+.tx-commentsplus .messages {
+    border: 1px solid #990;
+    background-color: #ffc;
+    padding: 10px;
+}
+
+.tx-commentsplus .messages li {
+    list-style-type: none;
+    color: #990;
+}
+
+.tx-commentsplus .errors {
+    border: 1px solid #c33;
+    background-color: #fcc;
+    padding: 10px;
+}
+
+.tx-commentsplus .errors li {
+    list-style-type: none;
+    color: #c33;
+}
+
+.tx-commentsplus .f3-form-error {
+    outline: 1px solid #ff0000;
+}

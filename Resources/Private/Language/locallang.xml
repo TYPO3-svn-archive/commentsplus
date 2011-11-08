@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Comments Plus extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+            <label index="authorstring">%s says:</label>
+			<label index="comments">Comments</label>
+            <label index="error_1221559976">Email Address is invalid.</label>
+            <label index="error_1316031555">URL is invalid. Please provide a valid URL or leave it blank.</label>
+            <label index="error_1316247780">No name provided.</label>
+			<label index="error_1317025849">No Message provided.</label>
+            <label index="flashmessage_Comment_moderation">Your comment is awaiting moderation.</label>
+            <label index="form_submit">Submit Comment</label>
+            <label index="no_comments">No comments yet.</label>
+			<label index="tx_commentsplus_domain_model_comment">Comment</label>
+			<label index="tx_commentsplus_domain_model_comment_email">Email</label>
+            <label index="tx_commentsplus_domain_model_comment_message">Message</label>
+			<label index="tx_commentsplus_domain_model_comment_name">Name</label>
+            <label index="tx_commentsplus_domain_model_comment_website">Website</label>
+		</languageKey>
+        <languageKey index="de" type="array">
+            <label index="authorstring">%s sagt:</label>
+			<label index="comments">Kommentare</label>
+            <label index="error_1221559976">Ungültige Email-Adresse.</label>
+            <label index="error_1316031555">Ungültige URL. Bitte geben Sie eine gültige URL an oder lassen Sie das Feld leer.</label>
+            <label index="error_1316247780">Sie müssen einen Namen angeben.</label>
+			<label index="error_1317025849">Sie müssen eine Nachricht eingeben.</label>
+            <label index="flashmessage_Comment_moderation">Ihr Beitrag wird überprüft und in Kürze freigeschaltet.</label>
+            <label index="form_submit">Kommentar absenden</label>
+            <label index="no_comments">Noch keine Kommentare.</label>
+			<label index="tx_commentsplus_domain_model_comment">Kommentar</label>
+			<label index="tx_commentsplus_domain_model_comment_email">Email</label>
+            <label index="tx_commentsplus_domain_model_comment_message">Nachricht</label>
+			<label index="tx_commentsplus_domain_model_comment_name">Name</label>
+            <label index="tx_commentsplus_domain_model_comment_website">Website</label>
+		</languageKey>
+	</data>
+</T3locallang>

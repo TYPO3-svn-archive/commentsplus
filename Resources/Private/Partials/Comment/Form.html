@@ -1,0 +1,24 @@
+{namespace c=Tx_Commentsplus_ViewHelpers}
+<f:form method="post" action="create"  name="newComment" absolute="TRUE" object="{newComment}">
+
+	<label for="commentsplus_name"><f:translate key="tx_commentsplus_domain_model_comment_name" />*:</label>
+	<f:form.textfield property="name" id="commentsplus_name" />
+
+	<label for="commentsplus_email"><f:translate key="tx_commentsplus_domain_model_comment_email" />*:</label>
+	<f:form.textfield property="email" id="commentsplus_email" />
+
+    <label for="commentsplus_website"><f:translate key="tx_commentsplus_domain_model_comment_website" />:</label>
+	<f:form.textfield property="website" id="commentsplus_website" />
+
+    <label for="commentsplus_message"><f:translate key="tx_commentsplus_domain_model_comment_message" />*:</label>
+	<c:form.textarea property="message" id="commentsplus_message" />
+
+    <f:if condition="{settings.spam.honeypotField}">
+        <div style="display: none">
+            <label for="commentsplus_honeypot">Other*:</label>
+	        <f:form.textfield name="commentsplus_honeypot" id="commentsplus_honeypot" />
+        </div>
+    </f:if>
+
+	<f:form.submit value="{f:translate(key:'form_submit')}" class="submit" />
+</f:form>

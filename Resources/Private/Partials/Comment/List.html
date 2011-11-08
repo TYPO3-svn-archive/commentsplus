@@ -1,0 +1,12 @@
+<f:if condition="{comments -> f:count()}">
+    <f:then>
+        <ul class="comments">
+        <f:for each="{comments}" as="comment">
+            <f:render partial="Comment/ListItem" arguments="{comment:comment}" />
+        </f:for>
+        </ul>
+    </f:then>
+    <f:else>
+        <p><f:translate key="no_comments" /></p>
+    </f:else>
+</f:if>

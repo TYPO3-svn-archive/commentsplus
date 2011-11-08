@@ -1,0 +1,28 @@
+{namespace c=Tx_Commentsplus_ViewHelpers}
+<f:if condition="{comment.website}">
+    <f:then>
+		<f:if condition="{comment.numberOfGenuineComments} >= {settings.spam.followLinksAfterGenuineComments}">
+			<f:then>
+				<c:define variable="linkedAuthorName" value="{comment.name -> f:link.external(uri:comment.website,rel:'follow')}">
+					<f:format.printf arguments="{1: linkedAuthorName}">
+						<f:translate key="authorstring" />
+					</f:format.printf>
+				</c:define>
+			</f:then>
+			<f:else>
+				<c:define variable="linkedAuthorName" value="{comment.name -> f:link.external(uri:comment.website,rel:'nofollow')}">
+					<f:format.printf arguments="{1: linkedAuthorName}">
+						<f:translate key="authorstring" />
+					</f:format.printf>
+				</c:define>
+			</f:else>
+		</f:if>
+    </f:then>
+    <f:else>
+        <f:format.printf arguments="{1: comment.name}">
+            <f:translate key="authorstring" />
+        </f:format.printf>
+    </f:else>
+</f:if>
+
+<f:comment>()</f:comment>

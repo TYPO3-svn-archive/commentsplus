@@ -1,0 +1,9 @@
+<li id="tx_commentsplus_comment_{comment.uid}">
+    <div class="author">
+        <f:render partial="Comment/Author" arguments="{comment:comment}" />
+    </div>
+    <div class="timewrap">
+        <f:render partial="Comment/Time" arguments="{comment:comment}" />
+    </div>
+    <f:format.html>{comment.message}</f:format.html>
+</li>

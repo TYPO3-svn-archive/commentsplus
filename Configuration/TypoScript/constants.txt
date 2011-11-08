@@ -1,0 +1,18 @@
+plugin.tx_commentsplus {
+	view {
+		# cat=plugin.tx_commentsplus/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:commentsplus/Resources/Private/Templates
+		# cat=plugin.tx_commentsplus/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:commentsplus/Resources/Private/Partials
+		# cat=plugin.tx_commentsplus/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:commentsplus/Resources/Private/Layouts
+	}
+	persistence {
+		# cat=plugin.tx_commentsplus//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+	settings {
+		# cat=plugin.tx_commentsplus/other; type=string; label=Notification Email Address:You will be notified when there are new comments to approve
+		notification.newCommentToApprove.email =
+	}
+}

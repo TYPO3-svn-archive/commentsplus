@@ -1,0 +1,9 @@
+<f:layout name="Default" />
+<f:section name="main">
+<h2><f:translate key="comments"/> ({comments -> f:count()})</h2>
+
+<f:render partial="Comment/List" arguments="{comments:comments}" />
+<f:render partial="Comment/Messages" arguments="{errors:errors}" />
+<f:render partial="Comment/Form" arguments="{newComment:newComment}" />
+
+</f:section>

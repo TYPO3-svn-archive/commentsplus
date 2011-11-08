@@ -1,0 +1,13 @@
+{namespace c=Tx_Commentsplus_ViewHelpers}
+<f:if condition="{settings.relativetime}">
+    <f:then>
+        <time datetime="{comment.time -> f:format.date(format:'c')}" title="{comment.time -> f:format.date(format:'d.m.Y H:i')}">
+            <c:relativeTimeString>{comment.time}</c:relativeTimeString>
+        </time>
+    </f:then>
+    <f:else>
+        <time datetime="{comment.time -> f:format.date(format:'c')}">
+            <f:format.date format="d.m.Y H:i:s">{comment.time}</f:format.date>
+        </time>
+    </f:else>
+</f:if>
